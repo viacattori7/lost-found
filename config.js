@@ -1,6 +1,6 @@
 // Testo sito
 window.SITE_TITLE = "Lost & Found";
-window.SITE_SUBTITLE = "Hai perso qualcosa? Controlla qui 👇";
+window.SITE_SUBTITLE = "Per chi sa come entra ma non sa come esce 👙";
 
 // Contatto per “È tuo?”
 window.CONTACT_WHATSAPP_LINK = "https://wa.me/39XXXXXXXXXX?text=Ciao!%20Ho%20visto%20un%20oggetto%20nel%20Lost%20%26%20Found%20e%20penso%20sia%20mio%20🙂";
