@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lost & Found</title>
 
-  <!-- Fonts (simili allo screenshot: display + mono) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,11 +15,10 @@
 <body>
   <div class="topbar">
     <div class="topbarInner">
-      <div class="brand"><span id="brandName">LOST&amp;FOUND</span><span class="mark">•</span></div>
+      <div class="brand">
+        <span id="brandName">LOST&amp;FOUND</span><span class="mark">•</span>
+      </div>
       <div class="nav">
-        <a href="#home" class="active">Home</a>
-        <a href="#items">Oggetti</a>
-        <a href="#faq">FAQ</a>
         <a href="admin.html" title="Solo per chi carica" class="cta">Admin</a>
       </div>
     </div>
@@ -27,7 +26,9 @@
 
   <div class="container" id="home">
     <section class="hero" aria-label="Hero">
-      <h1 class="heroTitle" id="siteTitle">Lost &amp; Found<span class="dot">.</span></h1>
+      <h1 class="heroTitle" id="siteTitle">
+        Lost &amp; Found<span class="dot">.</span>
+      </h1>
 
       <div class="heroRow">
         <div class="heroMotto" id="siteSubtitle">
@@ -36,8 +37,8 @@
         </div>
         <div class="heroRight">
           Based in<br>
-          <span style="color: rgba(243,243,251,.9)">Casa di (Nome)</span><br>
-          Amsterdam • Milano • Pavia
+          <span style="color: rgba(243,243,251,.9)">Casa di Simo Gamba</span><br>
+          Locarno, Switzerland
         </div>
       </div>
 
@@ -58,22 +59,25 @@
               <option value="all">Tutti</option>
               <option value="returned">Solo restituiti</option>
             </select>
-            <a class="cta" id="contactBtn" href="#" target="_blank" rel="noopener">È mio → contattami</a>
+            <a class="cta" id="contactBtn" href="#" target="_blank" rel="noopener">
+              È mio → contattami
+            </a>
           </div>
         </div>
 
-        <div class="notice" id="faq">
-          Se riconosci qualcosa, clicca <b>“È mio”</b>. Per privacy: niente nomi o dettagli personali qui.
+        <div class="notice">
+          Se riconosci qualcosa, clicca <b>“È mio”</b>.
         </div>
 
         <hr />
 
         <div id="loading" class="small">Caricamento…</div>
-        <div id="empty" class="small hidden">Nessun oggetto da mostrare (per ora 🎉).</div>
+        <div id="empty" class="small hidden">
+          Nessun oggetto da mostrare (per ora 🎉).
+        </div>
         <div class="grid" id="grid"></div>
 
         <div class="footer">
-          <div>Tip: stampa un QR code e mettilo vicino alla porta 👀</div>
           <div>Made for a friend 🎁</div>
         </div>
       </div>
@@ -83,10 +87,10 @@
   <script src="config.js"></script>
   <script src="app.js"></script>
   <script>
-    // Piccola personalizzazione del brand (usa SITE_TITLE se presente)
     (function(){
       const t = window.SITE_TITLE || "LOST&FOUND";
-      document.getElementById("brandName").textContent = t.toUpperCase().replace(/\s+/g," ");
+      document.getElementById("brandName").textContent =
+        t.toUpperCase().replace(/\s+/g," ");
     })();
   </script>
 </body>
