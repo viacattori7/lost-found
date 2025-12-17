@@ -10,6 +10,11 @@
   const emptyEl = document.getElementById("empty");
   const contactBtn = document.getElementById("contactBtn");
 
+  // stats (opzionali)
+  const statFoundEl = document.getElementById("statFound");
+  const statReturnedEl = document.getElementById("statReturned");
+  const statTotalEl = document.getElementById("statTotal");
+
   titleEl.textContent = window.SITE_TITLE || "Lost & Found";
   subtitleEl.textContent = window.SITE_SUBTITLE || "Hai perso qualcosa? Controlla qui 👇";
   document.title = window.SITE_TITLE || "Lost & Found";
@@ -37,6 +42,16 @@
     } catch {
       return d;
     }
+  }
+
+  function updateStats(allItems) {
+    if (!statFoundEl || !statReturnedEl || !statTotalEl) return;
+    const total = allItems.length;
+    const returned = allItems.filter(it => it.status === "returned").length;
+    const found = total - returned;
+    statFoundEl.textContent = String(found);
+    statReturnedEl.textContent = String(returned);
+    statTotalEl.textContent = String(total);
   }
 
   function card(it) {
@@ -98,6 +113,7 @@
       if (!res.ok) throw new Error("HTTP " + res.status);
       const data = await res.json();
       items = Array.isArray(data) ? data : [];
+      updateStats(items);
       render();
     } catch (e) {
       console.error(e);

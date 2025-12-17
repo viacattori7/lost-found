@@ -4,16 +4,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Admin — Lost & Found</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <!-- Modal password -->
   <div class="modal" id="pwModal">
     <div class="box">
-      <h2>Admin</h2>
+      <h2>Area Admin</h2>
       <div class="hint">
-        Questa pagina è protetta da una password “semplice”. Nota bene: essendo un sito statico, non è una sicurezza “forte” come un vero login server-side.
-        La vera protezione per le modifiche è il <b>GitHub Token</b>, che non viene salvato nel codice.
+        Password “semplice” (per non far inciampare gli ospiti).<br>
+        La vera sicurezza è il <b>GitHub Token</b>, che <b>non viene mai salvato</b> nel sito.
       </div>
       <div style="display:grid; gap:10px;">
         <input id="pw" type="password" placeholder="Password" autocomplete="current-password" />
@@ -22,24 +28,40 @@
       </div>
       <hr />
       <div class="small">
-        Tip: puoi togliere il link “Admin” da <code>index.html</code> se vuoi.
+        Tip: puoi tenere questa pagina “semi-nascosta” e condividere il link solo con chi deve caricare.
       </div>
     </div>
   </div>
 
   <div class="container">
-    <div class="header">
-      <div>
-        <h1>Admin</h1>
-        <div class="subtitle">Carica foto + aggiorna automaticamente GitHub Pages</div>
+    <div class="panel hero" style="margin-bottom:14px;">
+      <div class="heroInner">
+        <div>
+          <div class="kicker">
+            <span class="badge">Privato</span>
+            <span>•</span>
+            <span>Carica foto + descrizione e il sito si aggiorna da solo</span>
+          </div>
+          <h1 class="hTitle" style="margin-bottom:8px;">Admin</h1>
+          <p class="hSub">
+            Funziona così: inserisci token → carichi foto → il sito pubblico mostra subito l’oggetto.
+          </p>
+          <div class="statbar">
+            <div class="chip"><span class="dot"></span><span>1) Token</span></div>
+            <div class="chip"><span class="dot ok"></span><span>2) Foto</span></div>
+            <div class="chip"><span class="dot danger"></span><span>3) Pubblica</span></div>
+          </div>
+        </div>
+        <div class="heroArt">
+          <div class="sticker" aria-hidden="true"><span>🧤</span></div>
+        </div>
       </div>
-      <div class="badge">Privato (password)</div>
     </div>
 
     <div class="panel">
       <div class="notice">
-        Per aggiornare automaticamente il sito, questa pagina usa la GitHub REST API “Create or update file contents”. Serve un <b>Personal Access Token</b>
-        con permessi minimi sul repo (consigliato: fine-grained, solo quel repo, <b>Contents: Read & Write</b>). 
+        Questa pagina usa la GitHub REST API “Create or update file contents”. Serve un <b>Personal Access Token</b>
+        con permessi minimi sul repo (consigliato: fine-grained, solo quel repo, <b>Contents: Read & Write</b>).
       </div>
 
       <hr />
@@ -74,7 +96,7 @@
 
       <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-end; flex-wrap:wrap;">
         <h3 style="margin:0;">Oggetti (dal repo)</h3>
-        <div style="display:flex; gap:10px; align-items:center;">
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
           <select id="filterStatus">
             <option value="found">Da restituire</option>
             <option value="all">Tutti</option>
@@ -90,7 +112,7 @@
 
       <hr />
       <div class="small">
-        Nota: su un sito statico non puoi nascondere segreti nel codice. Non inserire il token in <code>config.js</code>.
+        Nota: in un sito statico non puoi nascondere segreti nel codice. Non inserire il token in <code>config.js</code>.
       </div>
     </div>
   </div>

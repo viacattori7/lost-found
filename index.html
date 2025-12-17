@@ -4,16 +4,47 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lost & Found</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <div>
-        <h1 id="siteTitle">Lost & Found</h1>
-        <div class="subtitle" id="siteSubtitle">Hai perso qualcosa? Controlla qui 👇</div>
+
+    <div class="panel hero">
+      <div class="heroInner">
+        <div>
+          <div class="kicker">
+            <span class="badge">Pagina pubblica</span>
+            <span>•</span>
+            <span>Se hai perso qualcosa a casa di qualcuno… guarda qui prima di scrivere 😄</span>
+          </div>
+
+          <h1 class="hTitle" id="siteTitle">Lost &amp; Found</h1>
+          <p class="hSub" id="siteSubtitle">Hai perso qualcosa? Controlla qui 👇</p>
+
+          <div class="statbar" id="stats">
+            <div class="chip"><span class="dot"></span><span>Da restituire: <b id="statFound">—</b></span></div>
+            <div class="chip"><span class="dot ok"></span><span>Restituiti: <b id="statReturned">—</b></span></div>
+            <div class="chip"><span class="dot danger"></span><span>Totale: <b id="statTotal">—</b></span></div>
+          </div>
+        </div>
+
+        <div class="heroArt">
+          <div class="sticker" aria-hidden="true" title="Lost & Found">
+            <span>🧦</span>
+          </div>
+        </div>
       </div>
-      <div class="badge">Pagina pubblica</div>
+    </div>
+
+    <div class="header">
+      <div class="small">Tip: stampa un QR code per questo sito e mettilo vicino alla porta 👀</div>
+      <div class="small"><a href="admin.html">Admin</a></div>
     </div>
 
     <div class="panel">
@@ -23,7 +54,7 @@
           <button class="btn secondary" id="clear">Pulisci</button>
         </div>
 
-        <div style="display:flex; gap:10px; align-items:center;">
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
           <select id="status">
             <option value="found">Solo da restituire</option>
             <option value="all">Tutti</option>
@@ -34,7 +65,7 @@
       </div>
 
       <div class="notice">
-        Se riconosci qualcosa, clicca <b>“È tuo?”</b>. (Per privacy: niente nomi o dettagli personali qui.)
+        Se riconosci qualcosa, clicca <b>“È mio”</b>. (Per privacy: niente nomi o dettagli personali qui.)
       </div>
 
       <hr />
@@ -44,8 +75,8 @@
       <div class="grid" id="grid"></div>
 
       <div class="footer">
-        <div>Tip: stampa un QR code per questo sito e mettilo vicino alla porta 👀</div>
-        <div><a href="admin.html" class="small">Admin</a></div>
+        <div>Ultimo consiglio: descrizioni brevi + foto nitida = oggetto restituito più veloce ✅</div>
+        <div class="small">Made with ❤️</div>
       </div>
     </div>
   </div>
