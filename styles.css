@@ -175,7 +175,7 @@ code{font-family: var(--font-mono)}
   opacity: .75;
 }
 .band::after{
-  content:"WE ASK THE FOLLOW-UP QUESTIONS";
+ 
   position:absolute;
   left: 16px;
   right: 16px;
