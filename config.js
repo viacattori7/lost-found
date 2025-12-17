@@ -1,5 +1,5 @@
 // Testo sito
-window.SITE_TITLE = "Lost & Found - Via Cattori 7";
+window.SITE_TITLE = "Lost & Found";
 window.SITE_SUBTITLE = "Hai perso qualcosa? Controlla qui 👇";
 
 // Contatto per “È tuo?”
