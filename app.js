@@ -1,6 +1,7 @@
 /* Pagina pubblica: legge data/items.json e mostra gli oggetti */
 (function () {
   const titleEl = document.getElementById("siteTitle");
+  const midTitleEl = document.getElementById("siteMidTitle");
   const subtitleEl = document.getElementById("siteSubtitle");
   const qEl = document.getElementById("q");
   const statusEl = document.getElementById("status");
@@ -16,6 +17,7 @@
   const statTotalEl = document.getElementById("statTotal");
 
   titleEl.textContent = window.SITE_TITLE || "Lost & Found";
+  if (midTitleEl) midTitleEl.textContent = window.SITE_MIDTITLE || "";
   subtitleEl.textContent = window.SITE_SUBTITLE || "Hai perso qualcosa? Controlla qui 👇";
   document.title = window.SITE_TITLE || "Lost & Found";
 
