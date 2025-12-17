@@ -5,21 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lost & Found</title>
 
-  <!-- Fonts (simili allo screenshot: display + mono) -->
+  <!-- Fonts (display + mono) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- HTML-only override: rimuove il testo grande “WE ASK…” generato via CSS -->
+  <style>
+    .band::after { content: ""; }
+  </style>
 </head>
 <body>
   <div class="topbar">
     <div class="topbarInner">
       <div class="brand"><span id="brandName">LOST&amp;FOUND</span><span class="mark">•</span></div>
       <div class="nav">
-        <a href="#home" class="active">Home</a>
-        <a href="#items">Oggetti</a>
-        <a href="#faq">FAQ</a>
         <a href="admin.html" title="Solo per chi carica" class="cta">Admin</a>
       </div>
     </div>
@@ -36,8 +38,8 @@
         </div>
         <div class="heroRight">
           Based in<br>
-          <span style="color: rgba(243,243,251,.9)">Casa di (Nome)</span><br>
-          Amsterdam • Milano • Pavia
+          <span style="color: rgba(243,243,251,.9)">Casa di Simo Gamba</span><br>
+          Locarno, Switzerland
         </div>
       </div>
 
@@ -62,8 +64,8 @@
           </div>
         </div>
 
-        <div class="notice" id="faq">
-          Se riconosci qualcosa, clicca <b>“È mio”</b>. Per privacy: niente nomi o dettagli personali qui.
+        <div class="notice">
+          Se riconosci qualcosa, clicca <b>“È mio”</b>.
         </div>
 
         <hr />
@@ -73,7 +75,6 @@
         <div class="grid" id="grid"></div>
 
         <div class="footer">
-          <div>Tip: stampa un QR code e mettilo vicino alla porta 👀</div>
           <div>Made for a friend 🎁</div>
         </div>
       </div>
@@ -83,7 +84,7 @@
   <script src="config.js"></script>
   <script src="app.js"></script>
   <script>
-    // Piccola personalizzazione del brand (usa SITE_TITLE se presente)
+    // Brand: usa SITE_TITLE se presente
     (function(){
       const t = window.SITE_TITLE || "LOST&FOUND";
       document.getElementById("brandName").textContent = t.toUpperCase().replace(/\s+/g," ");
