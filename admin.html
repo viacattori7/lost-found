@@ -10,6 +10,42 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
+  <style>
+  /* Solo admin: migliora leggibilità senza toccare il resto del sito */
+  .bandInner{
+    background: rgba(0,0,0,.78) !important;
+    border-top: 1px solid rgba(255,255,255,.12);
+  }
+
+  /* Testi più leggibili */
+  .notice{
+    color: rgba(243,243,251,.92) !important;
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+  }
+  .small{
+    color: rgba(243,243,251,.80) !important;
+    font-size: 12.5px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Titoli un po’ più chiari */
+  h3{
+    color: rgba(243,243,251,.96) !important;
+    letter-spacing: .2px;
+  }
+
+  /* Inputs più leggibili */
+  input, textarea, select{
+    background: rgba(255,255,255,.08) !important;
+    border-color: rgba(255,255,255,.18) !important;
+    color: rgba(243,243,251,.96) !important;
+  }
+  input::placeholder, textarea::placeholder{
+    color: rgba(243,243,251,.55) !important;
+  }
+</style>
+
 </head>
 <body>
   <div class="topbar">
