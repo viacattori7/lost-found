@@ -1,5 +1,5 @@
 // Testo sito
-window.SITE_TITLE = "Lost & Found — Casa di (Nome)";
+window.SITE_TITLE = "Lost & Found - Via Cattori 7";
 window.SITE_SUBTITLE = "Hai perso qualcosa? Controlla qui 👇";
 
 // Contatto per “È tuo?”
@@ -7,8 +7,8 @@ window.CONTACT_WHATSAPP_LINK = "https://wa.me/39XXXXXXXXXX?text=Ciao!%20Ho%20vis
 window.CONTACT_EMAIL = "mailto:amicamia@example.com?subject=Lost%20%26%20Found&body=Ciao!%20Ho%20visto%20un%20oggetto%20nel%20Lost%20%26%20Found%20e%20penso%20sia%20mio%20🙂";
 
 // GitHub repo che ospita il sito (per l’admin che committa file e JSON)
-window.GITHUB_OWNER = "OWNER";
-window.GITHUB_REPO = "REPO";
+window.GITHUB_OWNER = "viacattori7";
+window.GITHUB_REPO = "lost-found";
 window.GITHUB_BRANCH = "main";
 
 // Password “semplice” per sbloccare la pagina admin (client-side)
