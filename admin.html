@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin (helper) — Lost & Found</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1>Admin (helper)</h1>
+        <div class="subtitle">Versione “solo GitHub”: qui generi lo snippet e poi fai upload/commit su GitHub</div>
+      </div>
+      <div class="badge">No backend</div>
+    </div>
+
+    <div class="panel">
+      <div class="notice">
+        <b>Nota:</b> su GitHub Pages non esiste un vero login/upload server-side. La parte “protetta” è GitHub stesso:
+        solo chi ha accesso in scrittura al repo può caricare foto e aggiornare <code>data/items.json</code>. citeturn0search16
+      </div>
+
+      <hr />
+
+      <h3 style="margin:0 0 10px 0;">1) Carica foto su GitHub</h3>
+      <div class="small" id="repoHint"></div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+        <a class="btn" id="openUploads" href="#" target="_blank" rel="noopener">Apri cartella /uploads su GitHub</a>
+        <a class="btn secondary" id="openItems" href="#" target="_blank" rel="noopener">Apri data/items.json su GitHub</a>
+        <a class="btn secondary" href="index.html">Vai al sito</a>
+      </div>
+
+      <hr />
+
+      <h3 style="margin:0 0 10px 0;">2) Genera una voce per items.json</h3>
+      <div style="display:grid; gap:10px; grid-template-columns: 1fr 1fr;">
+        <input id="id" type="text" placeholder="id (es. chiavi-2025-12-17) *" />
+        <input id="found_date" type="date" />
+        <input id="title" type="text" placeholder="Titolo (es. 'Mazzo di chiavi') *" style="grid-column: 1 / -1;" />
+        <textarea id="description" placeholder="Descrizione (colore, marca, ecc.)" style="grid-column: 1 / -1;"></textarea>
+        <input id="photo" type="text" placeholder="Percorso foto (es. uploads/2025-12-17-chiavi.jpg) *" style="grid-column: 1 / -1;" />
+        <select id="status" style="grid-column: 1 / -1;">
+          <option value="found">Da restituire</option>
+          <option value="returned">Restituito</option>
+        </select>
+        <button class="btn ok" id="genBtn" style="grid-column: 1 / -1;">Genera snippet</button>
+      </div>
+
+      <div id="outWrap" class="hidden" style="margin-top:12px;">
+        <div class="small">Copia e incolla questo oggetto dentro l’array in <code>data/items.json</code>:</div>
+        <textarea id="out" readonly></textarea>
+      </div>
+
+      <hr />
+      <div class="small">
+        Tip: per non mostrare “Admin” pubblicamente, puoi togliere il link da <code>index.html</code>.
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script>
+    const repo = window.GITHUB_REPO || "OWNER/REPO";
+    const uploadsUrl = repo.includes("/") ? `https://github.com/${repo}/tree/main/uploads` : "https://github.com/";
+    const itemsUrl = repo.includes("/") ? `https://github.com/${repo}/edit/main/data/items.json` : "https://github.com/";
+    document.getElementById("openUploads").href = uploadsUrl;
+    document.getElementById("openItems").href = itemsUrl;
+    document.getElementById("repoHint").textContent = repo.includes("/") 
+      ? `Repo impostato: ${repo}` 
+      : "Imposta window.GITHUB_REPO in config.js per avere link diretti al repo.";
+
+    const genBtn = document.getElementById("genBtn");
+    const outWrap = document.getElementById("outWrap");
+    const out = document.getElementById("out");
+
+    genBtn.addEventListener("click", () => {
+      const id = (document.getElementById("id").value || "").trim();
+      const title = (document.getElementById("title").value || "").trim();
+      const description = (document.getElementById("description").value || "").trim();
+      const found_date = document.getElementById("found_date").value || "";
+      const status = document.getElementById("status").value;
+      const photo = (document.getElementById("photo").value || "").trim();
+
+      if (!id || !title || !photo) {
+        alert("Compila almeno id, titolo e percorso foto.");
+        return;
+      }
+
+      const obj = {
+        id,
+        title,
+        description: description || undefined,
+        found_date: found_date || undefined,
+        status,
+        photo
+      };
+
+      // rimuove campi undefined
+      Object.keys(obj).forEach(k => obj[k] === undefined && delete obj[k]);
+
+      out.value = JSON.stringify(obj, null, 2) + ",";
+      outWrap.classList.remove("hidden");
+      out.focus();
+      out.select();
+    });
+  </script>
+</body>
+</html>
