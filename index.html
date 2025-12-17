@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lost & Found</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <h1 id="siteTitle">Lost & Found</h1>
+        <div class="subtitle" id="siteSubtitle">Hai perso qualcosa? Controlla qui 👇</div>
+      </div>
+      <div class="badge">Pagina pubblica</div>
+    </div>
+
+    <div class="panel">
+      <div class="controls">
+        <div class="search">
+          <input id="q" type="text" placeholder="Cerca (es. 'occhiali', 'chiavi', 'caricatore')..." />
+          <button class="btn secondary" id="clear">Pulisci</button>
+        </div>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <select id="status">
+            <option value="found">Solo da restituire</option>
+            <option value="all">Tutti</option>
+            <option value="returned">Solo restituiti</option>
+          </select>
+          <a class="btn" id="contactBtn" href="#" target="_blank" rel="noopener">È tuo? Contattami</a>
+        </div>
+      </div>
+
+      <div class="notice">
+        Se riconosci qualcosa, clicca <b>“È tuo?”</b>. (Per privacy: niente nomi o dettagli personali qui.)
+      </div>
+
+      <hr />
+
+      <div id="loading" class="small">Caricamento…</div>
+      <div id="empty" class="small hidden">Nessun oggetto da mostrare (per ora 🎉).</div>
+      <div class="grid" id="grid"></div>
+
+      <div class="footer">
+        <div>Tip: stampa un QR code per questo sito e mettilo vicino alla porta 👀</div>
+        <div><a href="admin.html" class="small">Admin</a></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
