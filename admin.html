@@ -5,21 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Admin — Lost & Found</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="topbar">
+    <div class="topbarInner">
+      <div class="brand"><span>LOST&amp;FOUND</span><span class="mark">•</span></div>
+      <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#items">Oggetti</a>
+        <a href="admin.html" class="active">Admin</a>
+        <a href="index.html" class="cta">Sito pubblico</a>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal password -->
   <div class="modal" id="pwModal">
     <div class="box">
       <h2>Area Admin</h2>
       <div class="hint">
-        Password “semplice” (per non far inciampare gli ospiti).<br>
-        La vera sicurezza è il <b>GitHub Token</b>, che <b>non viene mai salvato</b> nel sito.
+        Password “semplice” per evitare accessi casuali.<br>
+        Per pubblicare serve anche il <b>GitHub Token</b> (che non viene mai salvato nel sito).
       </div>
       <div style="display:grid; gap:10px;">
         <input id="pw" type="password" placeholder="Password" autocomplete="current-password" />
@@ -27,94 +38,80 @@
         <div class="small" id="pwMsg"></div>
       </div>
       <hr />
-      <div class="small">
-        Tip: puoi tenere questa pagina “semi-nascosta” e condividere il link solo con chi deve caricare.
-      </div>
+      <div class="small">Tip: condividi questo link solo con chi deve caricare.</div>
     </div>
   </div>
 
   <div class="container">
-    <div class="panel hero" style="margin-bottom:14px;">
-      <div class="heroInner">
-        <div>
-          <div class="kicker">
-            <span class="badge">Privato</span>
-            <span>•</span>
-            <span>Carica foto + descrizione e il sito si aggiorna da solo</span>
-          </div>
-          <h1 class="hTitle" style="margin-bottom:8px;">Admin</h1>
-          <p class="hSub">
-            Funziona così: inserisci token → carichi foto → il sito pubblico mostra subito l’oggetto.
-          </p>
-          <div class="statbar">
-            <div class="chip"><span class="dot"></span><span>1) Token</span></div>
-            <div class="chip"><span class="dot ok"></span><span>2) Foto</span></div>
-            <div class="chip"><span class="dot danger"></span><span>3) Pubblica</span></div>
-          </div>
+    <section class="hero" style="padding-top: 18px;">
+      <h1 class="heroTitle">Admin<span class="dot">.</span></h1>
+      <div class="heroRow">
+        <div class="heroMotto">
+          Upload foto + descrizione → commit automatico su GitHub → update del sito.
         </div>
-        <div class="heroArt">
-          <div class="sticker" aria-hidden="true"><span>🧤</span></div>
+        <div class="heroRight">
+          1) Token • 2) Foto • 3) Pubblica
         </div>
       </div>
-    </div>
+      <div class="divider"></div>
+    </section>
 
-    <div class="panel">
-      <div class="notice">
-        Questa pagina usa la GitHub REST API “Create or update file contents”. Serve un <b>Personal Access Token</b>
-        con permessi minimi sul repo (consigliato: fine-grained, solo quel repo, <b>Contents: Read & Write</b>).
-      </div>
+    <section class="band" aria-label="Pannello admin">
+      <div class="bandInner">
+        <div class="notice">
+          Serve un <b>Personal Access Token</b> con permessi minimi sul repo (fine-grained, solo quel repo, <b>Contents: Read &amp; Write</b>).
+        </div>
 
-      <hr />
+        <hr />
 
-      <h3 style="margin:0 0 10px 0;">1) GitHub Token (non viene scritto nel repo)</h3>
-      <div style="display:grid; gap:10px; grid-template-columns: 1fr 1fr;">
-        <input id="owner" type="text" placeholder="OWNER (es. mario)" />
-        <input id="repo" type="text" placeholder="REPO (es. lost-found-casa)" />
-        <input id="branch" type="text" placeholder="branch (es. main)" />
-        <input id="token" type="password" placeholder="GitHub Token (PAT)" style="grid-column: 1 / -1;" />
-        <button class="btn secondary" id="saveTokenBtn" style="grid-column: 1 / -1;">Salva token (solo per questa sessione)</button>
-        <div class="small" id="tokenMsg" style="grid-column: 1 / -1;"></div>
-      </div>
+        <h3 style="margin:0 0 10px 0;">1) GitHub Token</h3>
+        <div style="display:grid; gap:10px; grid-template-columns: 1fr 1fr;">
+          <input id="owner" type="text" placeholder="OWNER (es. mario)" />
+          <input id="repo" type="text" placeholder="REPO (es. lost-found-casa)" />
+          <input id="branch" type="text" placeholder="branch (es. main)" />
+          <input id="token" type="password" placeholder="GitHub Token (PAT)" style="grid-column: 1 / -1;" />
+          <button class="btn secondary" id="saveTokenBtn" style="grid-column: 1 / -1;">Salva token (solo per questa sessione)</button>
+          <div class="small" id="tokenMsg" style="grid-column: 1 / -1;"></div>
+        </div>
 
-      <hr />
+        <hr />
 
-      <h3 style="margin:0 0 10px 0;">2) Nuovo oggetto</h3>
-      <div style="display:grid; gap:10px; grid-template-columns: 1fr 1fr;">
-        <input id="title" type="text" placeholder="Titolo (es. 'Mazzo di chiavi') *" />
-        <input id="found_date" type="date" />
-        <textarea id="description" placeholder="Descrizione (colore, marca, ecc.)" style="grid-column: 1 / -1;"></textarea>
-        <input id="photo" type="file" accept="image/*" style="grid-column: 1 / -1;" />
-        <select id="status" style="grid-column: 1 / -1;">
-          <option value="found">Da restituire</option>
-          <option value="returned">Restituito</option>
-        </select>
-        <button class="btn ok" id="uploadBtn" style="grid-column: 1 / -1;">Carica e pubblica</button>
-        <div class="small" id="uploadMsg" style="grid-column: 1 / -1;"></div>
-      </div>
-
-      <hr />
-
-      <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-end; flex-wrap:wrap;">
-        <h3 style="margin:0;">Oggetti (dal repo)</h3>
-        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-          <select id="filterStatus">
+        <h3 style="margin:0 0 10px 0;">2) Nuovo oggetto</h3>
+        <div style="display:grid; gap:10px; grid-template-columns: 1fr 1fr;">
+          <input id="title" type="text" placeholder="Titolo (es. 'Mazzo di chiavi') *" />
+          <input id="found_date" type="date" />
+          <textarea id="description" placeholder="Descrizione (colore, marca, ecc.)" style="grid-column: 1 / -1;"></textarea>
+          <input id="photo" type="file" accept="image/*" style="grid-column: 1 / -1;" />
+          <select id="status" style="grid-column: 1 / -1;">
             <option value="found">Da restituire</option>
-            <option value="all">Tutti</option>
-            <option value="returned">Restituiti</option>
+            <option value="returned">Restituito</option>
           </select>
-          <button class="btn secondary" id="refreshBtn">Aggiorna</button>
-          <a class="btn secondary" href="index.html">Vai al sito</a>
+          <button class="btn ok" id="uploadBtn" style="grid-column: 1 / -1;">Carica e pubblica</button>
+          <div class="small" id="uploadMsg" style="grid-column: 1 / -1;"></div>
         </div>
-      </div>
 
-      <div id="listLoading" class="small" style="margin-top:10px;">Caricamento…</div>
-      <div id="list" style="margin-top:10px;"></div>
+        <hr />
 
-      <hr />
-      <div class="small">
-        Nota: in un sito statico non puoi nascondere segreti nel codice. Non inserire il token in <code>config.js</code>.
+        <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-end; flex-wrap:wrap;">
+          <h3 style="margin:0;">Oggetti (dal repo)</h3>
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <select id="filterStatus">
+              <option value="found">Da restituire</option>
+              <option value="all">Tutti</option>
+              <option value="returned">Restituiti</option>
+            </select>
+            <button class="btn secondary" id="refreshBtn">Aggiorna</button>
+            <a class="btn secondary" href="index.html">Vai al sito</a>
+          </div>
+        </div>
+
+        <div id="listLoading" class="small" style="margin-top:10px;">Caricamento…</div>
+        <div id="list" style="margin-top:10px;"></div>
+
+        <hr />
+        <div class="small">Non inserire il token in <code>config.js</code>.</div>
       </div>
-    </div>
+    </section>
   </div>
 
   <script src="config.js"></script>

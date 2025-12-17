@@ -5,83 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lost & Found</title>
 
-  <!-- Fonts -->
+  <!-- Fonts (simili allo screenshot: display + mono) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="container">
-
-    <div class="panel hero">
-      <div class="heroInner">
-        <div>
-          <div class="kicker">
-            <span class="badge">Pagina pubblica</span>
-            <span>•</span>
-            <span>Se hai perso qualcosa a casa di qualcuno… guarda qui prima di scrivere 😄</span>
-          </div>
-
-          <h1 class="hTitle" id="siteTitle">Lost &amp; Found</h1>
-          <p class="hSub" id="siteSubtitle">Hai perso qualcosa? Controlla qui 👇</p>
-
-          <div class="statbar" id="stats">
-            <div class="chip"><span class="dot"></span><span>Da restituire: <b id="statFound">—</b></span></div>
-            <div class="chip"><span class="dot ok"></span><span>Restituiti: <b id="statReturned">—</b></span></div>
-            <div class="chip"><span class="dot danger"></span><span>Totale: <b id="statTotal">—</b></span></div>
-          </div>
-        </div>
-
-        <div class="heroArt">
-          <div class="sticker" aria-hidden="true" title="Lost & Found">
-            <span>🧦</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="header">
-      <div class="small">Tip: stampa un QR code per questo sito e mettilo vicino alla porta 👀</div>
-      <div class="small"><a href="admin.html">Admin</a></div>
-    </div>
-
-    <div class="panel">
-      <div class="controls">
-        <div class="search">
-          <input id="q" type="text" placeholder="Cerca (es. 'occhiali', 'chiavi', 'caricatore')..." />
-          <button class="btn secondary" id="clear">Pulisci</button>
-        </div>
-
-        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-          <select id="status">
-            <option value="found">Solo da restituire</option>
-            <option value="all">Tutti</option>
-            <option value="returned">Solo restituiti</option>
-          </select>
-          <a class="btn" id="contactBtn" href="#" target="_blank" rel="noopener">È tuo? Contattami</a>
-        </div>
-      </div>
-
-      <div class="notice">
-        Se riconosci qualcosa, clicca <b>“È mio”</b>. (Per privacy: niente nomi o dettagli personali qui.)
-      </div>
-
-      <hr />
-
-      <div id="loading" class="small">Caricamento…</div>
-      <div id="empty" class="small hidden">Nessun oggetto da mostrare (per ora 🎉).</div>
-      <div class="grid" id="grid"></div>
-
-      <div class="footer">
-        <div>Ultimo consiglio: descrizioni brevi + foto nitida = oggetto restituito più veloce ✅</div>
-        <div class="small">Made with ❤️</div>
+  <div class="topbar">
+    <div class="topbarInner">
+      <div class="brand"><span id="brandName">LOST&amp;FOUND</span><span class="mark">•</span></div>
+      <div class="nav">
+        <a href="#home" class="active">Home</a>
+        <a href="#items">Oggetti</a>
+        <a href="#faq">FAQ</a>
+        <a href="admin.html" title="Solo per chi carica" class="cta">Admin</a>
       </div>
     </div>
   </div>
 
+  <div class="container" id="home">
+    <section class="hero" aria-label="Hero">
+      <h1 class="heroTitle" id="siteTitle">Lost &amp; Found<span class="dot">.</span></h1>
+
+      <div class="heroRow">
+        <div class="heroMotto" id="siteSubtitle">
+          Se non sai spiegare dove sono finite le cose…<br>
+          non siamo impressionati.
+        </div>
+        <div class="heroRight">
+          Based in<br>
+          <span style="color: rgba(243,243,251,.9)">Casa di (Nome)</span><br>
+          Amsterdam • Milano • Pavia
+        </div>
+      </div>
+
+      <div class="divider"></div>
+    </section>
+
+    <section class="band" id="items" aria-label="Oggetti smarriti">
+      <div class="bandInner">
+        <div class="controls">
+          <div class="search">
+            <input id="q" type="text" placeholder="Cerca (es. 'occhiali', 'chiavi', 'caricatore')..." />
+            <button class="btn secondary" id="clear">Pulisci</button>
+          </div>
+
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <select id="status">
+              <option value="found">Solo da restituire</option>
+              <option value="all">Tutti</option>
+              <option value="returned">Solo restituiti</option>
+            </select>
+            <a class="cta" id="contactBtn" href="#" target="_blank" rel="noopener">È mio → contattami</a>
+          </div>
+        </div>
+
+        <div class="notice" id="faq">
+          Se riconosci qualcosa, clicca <b>“È mio”</b>. Per privacy: niente nomi o dettagli personali qui.
+        </div>
+
+        <hr />
+
+        <div id="loading" class="small">Caricamento…</div>
+        <div id="empty" class="small hidden">Nessun oggetto da mostrare (per ora 🎉).</div>
+        <div class="grid" id="grid"></div>
+
+        <div class="footer">
+          <div>Tip: stampa un QR code e mettilo vicino alla porta 👀</div>
+          <div>Made for a friend 🎁</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <script src="config.js"></script>
   <script src="app.js"></script>
+  <script>
+    // Piccola personalizzazione del brand (usa SITE_TITLE se presente)
+    (function(){
+      const t = window.SITE_TITLE || "LOST&FOUND";
+      document.getElementById("brandName").textContent = t.toUpperCase().replace(/\s+/g," ");
+    })();
+  </script>
 </body>
 </html>
