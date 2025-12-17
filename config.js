@@ -1,5 +1,6 @@
 // Testo sito
 window.SITE_TITLE = "Lost & Found";
+window.SITE_MIDTITLE = "Per chi sa come entra ma non sa come esce 👙";
 window.SITE_SUBTITLE = "Hai perso qualcosa? Controlla qui 👇";
 
 // Contatto per “È tuo?”
